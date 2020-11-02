@@ -22,11 +22,17 @@ export default class SpfxPnpPeoplepicker extends React.Component<ISpfxPnpPeoplep
 
   @autobind
   private async _getListItem() {
-    const item: any = await sp.web.lists.getByTitle("Teams").items.getById(1).select("Title", "Team/Name").expand("Team").get();
+    const item: any = await sp.web.lists.getByTitle("kkkk").items.getById(7).select("Title", "Customer/Name").expand("Customer").get();
+    
+    console.log(item);
+
     let usernamearr: string[] = [];
-    item.Team.forEach(user => {
+    item.Customer.forEach(user => {
       usernamearr.push(user.Name.split('|membership|')[1].toString());
-    })
+    });
+
+    console.log(usernamearr);
+
     this.setState({
       selectedusers: usernamearr
     });
@@ -60,8 +66,11 @@ export default class SpfxPnpPeoplepicker extends React.Component<ISpfxPnpPeoplep
     let userarr: IUserDetail[] = [];
     items.forEach(user => {
       userarr.push({ ID: user.id, LoginName: user.loginName });
-    })
-    this.setState({ UserDetails: userarr })
+    });
+
+    console.log(userarr);
+
+    this.setState({ UserDetails: userarr });
   }
 
   @autobind
@@ -69,12 +78,15 @@ export default class SpfxPnpPeoplepicker extends React.Component<ISpfxPnpPeoplep
     let userids: object[] = [];
     this.state.UserDetails.forEach(user => {
       userids.push({ key: user.LoginName });
-    })
-    const updatedItem = await sp.web.lists.getByTitle("Teams").items.getById(1).validateUpdateListItem(
+    });
+
+    const updatedItem = await sp.web.lists.getByTitle("kkkk").items.getById(1).validateUpdateListItem(
       [{
-        FieldName: "Team",
+        FieldName: "Customer",
         FieldValue: JSON.stringify(userids),
       }]);
+
     this.setState({ SuccessMessage: 'Successfully saved' });
+
   }
 }

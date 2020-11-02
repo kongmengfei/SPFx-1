@@ -3,7 +3,7 @@
   "solution": {
     "name": "spfx-pnp-peoplepicker-client-side-solution",
     "id": "ccd44f17-b4ad-416c-96a6-8516bdf06bb2",
-    "version": "1.0.0.0",
+    "version": "1.0.0.1",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false
